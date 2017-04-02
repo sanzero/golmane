@@ -1,0 +1,149 @@
+<style scoped>   
+.diagram{
+    overflow-x: auto;
+    width: 100vw;
+}
+
+.my-tab{
+    display: flex;
+    font-size: x-small;
+}
+
+.btn-group ons-button{
+    height: 24px;
+    width: 120px;
+    font-size: small;
+    line-height: 24px;
+    padding: 0;
+    display: inline-block;
+}
+.btn-group ons-button:first-child{
+    border-radius: 4px 0 0 4px;
+}
+.btn-group ons-button:last-child{
+    border-radius: 0 4px 4px 0;
+}
+
+.swiper-container {
+    width: 100vw;
+    height: calc(100% - 3 * 44px);
+}
+.swiper-wrapper {
+    min-height: 100%;
+}
+.swiper-slide{
+    height: calc(100% - 3 * 44px);
+}
+.swiper-button-next{
+    transform: scale(0.5);
+    right: -5px;
+}
+.swiper-button-prev{
+    transform: scale(0.5);
+    left: -5px;
+}
+</style>
+<ons-popover direction="down" id="popover" cancelable>
+  <ons-list>
+    <ons-list-item modifier="longdivider">
+      統計期間
+      <select>
+          <option>10</option>
+          <option>20</option>
+          <option>全部</option>
+      </select>
+    </ons-list-item>
+    <ons-list-item modifier="longdivider">
+      ゴルフ場
+      <select>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+      </select>
+    </ons-list-item>
+  </ons-list>
+    <div class="display-flex">
+        <ons-button modifier="outline large" class="font-small" style="border:none;" onclick="hidePopover()">OK</ons-button>
+        <div style="border-left:0.5px solid #bbb;"></div>
+        <ons-button modifier="outline large" class="font-small" style="border:none;" onclick="hidePopover()">キャンセル</ons-button>
+    </div>
+</ons-popover>
+<ons-page id="statistics">
+    <ons-toolbar>
+        <div class="left"><ons-back-button></ons-back-button></div>
+        <div class="center">スコア統計</div>
+        <div class="right"><ons-toolbar-button onclick="showPopover(this)"><ons-icon icon="ion-navicon"></ons-icon></ons-toolbar-button></div>
+    </ons-toolbar>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <ons-toolbar inline>
+                    <div class="center">
+                        <div class="btn-group">
+                            <ons-button class="average">平均</ons-button><ons-button modifier="outline" class="transition">推移</ons-button>
+                        </div>
+                    </div>
+                </ons-toolbar>            
+                <ons-list>
+                    <ons-list-item modifier="longdivider">
+                        <div class="left">
+                            <span class="result__stroke">平均スコア</span>
+                            <span class="result__putt">98.6</span>
+                        </div>
+                        <div class="right">
+                            <span class="result__stroke">ベストスコア</span>
+                            <span class="result__putt">92</span>
+                        </div>
+                    </ons-list-item>
+                    <ons-list-item modifier="longdivider" class="diagram">
+                        <canvas id="score-diagram" height="50" width="100"></canvas>
+                    </ons-list-item>
+                </ons-list>
+            </div>
+            <div class="swiper-slide">
+                <ons-toolbar inline>
+                    <div class="center">
+                        <div class="btn-group">
+                            <ons-button class="average">平均</ons-button><ons-button modifier="outline" class="transition">推移</ons-button>
+                        </div>
+                    </div>
+                </ons-toolbar>
+                <div class="by-hole-statistics">ホールごとの統計</div>
+            </div>
+            <div class="swiper-slide">
+                <ons-toolbar inline>
+                    <div class="center">
+                        <div class="btn-group">
+                            <ons-button class="average">平均</ons-button><ons-button modifier="outline" class="transition">推移</ons-button>
+                        </div>
+                    </div>
+                </ons-toolbar>
+                <div class="putt-statistics">パット</div>
+            </div>
+
+            <div class="swiper-slide">
+                <ons-toolbar inline>
+                    <div class="center">
+                        <div class="btn-group">
+                            <ons-button class="average">平均</ons-button><ons-button modifier="outline" class="transition">推移</ons-button>
+                        </div>div>
+                    </div>
+                </ons-toolbar>
+                <div class="tee-shot-statistics">ティーショット</div>
+            </div>
+            <div class="swiper-slide">
+                <ons-toolbar inline>
+                    <div class="center">
+                        <div class="btn-group">
+                            <ons-button class="average">平均</ons-button><ons-button modifier="outline" class="transition">推移</ons-button>
+                        </div>div>
+                    </div>
+                </ons-toolbar>
+                <div class="par-on-statistics">パーオン率/ボギーオン率</div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</ons-page>

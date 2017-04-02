@@ -1,0 +1,140 @@
+<style scoped>   
+.round-info{
+}
+.round-info .course-thumb{
+    width: 33vw;
+    padding: 12px 7px;
+
+}
+.round-info .round-detail{
+    padding: 12px 7px;
+}
+
+.cource-name {
+    font-weight: bold;
+    font-size: small;
+    color: red;
+}
+.round-condition{
+    font-size: small;
+}
+.half {
+    display: flex;
+    flex-direction: column;
+}
+.score__ratio,
+.score__ratio .list__item__center{
+    padding: 0;
+}
+
+.score__ratio table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.score__ratio th,
+.score__ratio td{
+    width: 16.66vw;
+    border: none;
+    outline: 0.5px solid #ccc;
+    text-align: center;
+}
+.score__ratio th{
+    font-size: 9px;    
+}
+</style>
+<ons-page id="history-round-result">
+    <ons-toolbar>
+        <div class="left"><ons-back-button></ons-back-button></div>
+        <div class="center">ラウンド結果</div>
+        <div class="right">
+            <ons-toolbar-button style="font-size:small" onclick="nav.pushPage('score-card.html', {animation: 'lift'})">スコアカード</ons-toolbar-button>
+        </div>
+    </ons-toolbar>
+    <ons-list>
+        <ons-list-item modifier="longdivider" class="round-info">
+            <div class="left">
+                サムネ
+            </div>
+            <div class="right round-detail">
+                <div class="cource-name">ABCゴルフコースカントリークラブ　青山コース</div>
+                <div class="round-condition">
+                    <span class="round-date">2017年3月12日</span><span class="weather">☼</span><span class="wind">微風</span><br>
+                    <span class="tee">レギュラー</span><span class="green">ベント</span>
+                </div>
+            </div>
+        </ons-list-item>
+        <ons-list-item modifier="longdivider">
+            <div class="left">
+                <span class="result__stroke">92</span>
+                <span class="result__putt">40</span>
+            </div>
+            <div class="right half">
+                <div class="half__result">
+                    <span class="half__result__course">フロント9</span>
+                    <span class="half__result__stroke">46</span>
+                    <span class="half__result__putt">20</span>
+                </div>
+                <div class="half__result">
+                    <span class="half__result__course">バック9</span>
+                    <span class="half__result__stroke">46</span>
+                    <span class="half__result__putt">20</span>
+                </div>
+                <div class="half__result">
+                    <span class="half__result__course">エキストラ9</span>
+                    <span class="half__result__stroke">46</span>
+                    <span class="half__result__putt">20</span>
+                </div>
+            </div>
+        </ons-list-item>
+        <ons-list-item modifier="longdivider" class="score__ratio">
+            <table>
+                <thead>
+                    <tr>
+                        <th>イーグル以上</th>
+                        <th>バーディ</th>
+                        <th>パー</th>
+                        <th>ボギー</th>
+                        <th>ダブルボギー</th>
+                        <th>+3以上</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0%</td>
+                        <td>1%</td>
+                        <td>3%</td>
+                        <td>12%</td>
+                        <td>66%</td>
+                        <td>2%</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>12</td>
+                        <td>22</td>
+                        <td>1</td>
+                        <td>3</td>
+                        <td>0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </ons-list-item>
+        <ons-list-item modifier="longdivider">
+            フェアウェイキープ率
+        </ons-list-item>
+        <ons-list-item modifier="longdivider">
+            パット
+        </ons-list-item>
+        <ons-list-item modifier="longdivider">
+            <div class="">
+                パーオン率
+            </div>
+            <div class="">
+                ボギーオン率
+            </div>
+        </ons-list-item>
+        <ons-list-item>
+            パット
+        </ons-list-item>
+
+    </ons-list>
+</ons-page>

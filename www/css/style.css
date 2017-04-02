@@ -1,0 +1,27 @@
+
+/*reset*/
+ul {
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-padding-start: 0;
+}
+p{
+    margin: 0;
+}
+
+.font-small{
+    font-size: small;
+}
+.font-xx-small{
+    font-size: xx-small;
+}
+
+.display-flex{
+    display: flex;
+}
+
+/* common */
+.list__header{
+    padding: 0;
+    padding-left: 10px;
+}

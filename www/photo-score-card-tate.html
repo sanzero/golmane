@@ -1,0 +1,250 @@
+<style>
+@font-face {
+    font-family: 'dq';
+    src: url('font/PixelMplus10-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'pop';
+    src: url('font/Nyashi.ttf') format('truetype'),
+         url('font/AppendNyashi.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'japan';
+    src: url('font/02UtsukushiMincho.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'elegant';
+    src: url('font/02UtsukushiMincho.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'uzura';
+    src: url('font/uzura.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'loman';
+    src: url('font/GenEiRomanNotes-W9.otf') format('opentype');
+}
+
+.image {
+    width: 100%;
+    height: 100vw;
+    background: #111 center center no-repeat;
+    background-size:cover;
+    background-image: url();
+    position: relative;
+}
+.image img{
+    width: 100%;
+    height: 100vw;
+}
+.view-change > ons-list-item {
+    width: 33.33%;
+    outline: 0.5px solid #bbb;
+    margin-top: -1px;
+    float: left;
+    text-align: center;
+}
+.list__header {
+    padding: 0;
+    padding-left: 12px;
+}
+.popover__content {
+    min-height: 80px;
+}
+
+.score-card {
+    text-shadow: 1px 1px 2px rgba(51, 51, 51, 1);    
+    color : white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.25) 10%,rgba(0,0,0,0.35) 100%);
+}
+.score-card table{
+    border-collapse:collapse;
+    table-layout: fixed;
+    width: 48vw;
+    margin-bottom: 3vw;
+    position: absolute;
+}
+.score-card table:first-child{
+    top: 0;
+    left: 0;
+}
+.score-card table:last-child{
+    top: 50%;
+    left: 0;
+}
+.score-card tr {
+    float: left;
+}
+.score-card__hole,
+.score-card__stroke{
+    border-bottom: 1px  solid #fff;
+}
+
+.score-card__hole th{
+    font-size: x-small;
+    font-weight: normal;
+    text-align: center;
+    float: left;
+}
+.score-card__stroke td{
+    font-size: medium;
+    font-weight: normal;
+    text-align: center;
+    font-feature-settings: "palt" 1;
+    float: left;
+}
+.half {
+    position: relative;
+    width: 100%;
+    height: 10vw;
+}
+.half__stroke {
+    font-size: x-large;
+    position: absolute;
+    left: 55%;
+    top: 2vw;
+}
+.half__front,
+.half__back {
+    font-size: x-small;
+    position: absolute;
+    left: 25%;
+    top: 5vw;
+}
+.round-date{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: small;
+    padding: 2vw;
+    width: 100%;
+    text-align: right;
+}
+.course-name{
+    writing-mode: vertical-rl;
+    width: 100%;
+    padding: 2vw;
+    height: 80vw;
+}
+.total-stroke{
+    font-size: xx-large;
+    width: 100%;
+    text-align: right;
+    padding: 0 2vw 0 0;
+    border-bottom: 1px  solid #fff;
+}
+</style>
+<ons-page id="photo-score-card">
+    <ons-toolbar>
+        <div class="left">
+            <ons-back-button></ons-back-button>
+        </div>
+        <div class="center">フォトスコアカード</div>
+        <div class="right">
+            <ons-toolbar-button>
+                <ons-icon icon="ion-share, material:md-share"></ons-icon>
+            </ons-toolbar-button>
+        </div>
+    </ons-toolbar>
+    <div id="photoscorecard-image"class="image" onclick="getPhoto(this)">
+        <ons-button onclick="nav.pushPage('photo-image-edit.html', {animation: 'lift'})"><ons-icon icon="ion-edit"></ons-icon>編集</ons-button>
+        <ons-button><ons-icon icon="ion-close"></ons-icon></ons-button>
+        <div class="score-card">
+            <div class="round-date">2017.09.28</div>
+            <div class="course-name">竜ヶ峰九頭竜薔薇明日葉中也カントリークラブ</div>
+            <div class="total-stroke">78</div>
+            <table>
+                <tr>
+                    <td class="half" colspan="9">
+                        <div class="half__front">フロント9</div>
+                        <div class="half__stroke">54</div>
+                    </td>
+                </tr>
+                <tr class="score-card__hole">
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                </tr>
+                <tr class="score-card__stroke">
+                    <td>○</td>
+                    <td>-</td>
+                    <td>□</td>
+                    <td>-</td>
+                    <td>○</td>
+                    <td>+3</td>
+                    <td>+3</td>
+                    <td>△</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td class="half" colspan="9">
+                        <div class="half__back">バック9</div>
+                        <div class="half__stroke">48</div>
+                    </td>
+                </tr>
+                <tr class="score-card__hole">
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                </tr>
+                <tr class="score-card__stroke">
+                    <td>○</td>
+                    <td>-</td>
+                    <td>△</td>
+                    <td>+9</td>
+                    <td>○</td>
+                    <td>□</td>
+                    <td>+3</td>
+                    <td>○</td>
+                    <td>-</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <ons-list class="view-change">
+        <ons-list-header>表示切り替え</ons-list-header>
+        <ons-list-item class="active" tappable><ons-icon icon="ion-calendar"></ons-icon>日付</ons-list-item>
+        <ons-list-item class="active" tappable>コース</ons-list-item>
+        <ons-list-item class="active" tappable onclick="showPopover(this)">
+            スコア
+        </ons-list-item>
+    </ons-list>
+    <ons-list class="score-design">
+        <ons-list-header>スコアデザイン</ons-list-header>
+    </ons-list>
+    <div style="display:flex">
+        <div onclick="document.querySelector('.image').style.fontFamily='';">ノーマル</div>
+        <div onclick="document.querySelector('.image').style.fontFamily='dq';">DQ</div>
+        <div onclick="document.querySelector('.image').style.fontFamily='elegant';">エレガント</div>
+        <div onclick="document.querySelector('.image').style.fontFamily='pop';">POP</div>
+        <div onclick="document.querySelector('.image').style.fontFamily='uzura';">うずら</div>
+        <div onclick="document.querySelector('.image').style.fontFamily='loman';">ロマン</div>
+    </div>
+</ons-page>
+<ons-popover direction="up" id="popover">
+        <ons-list modifier="inset" style="margin: 0">
+            <ons-list-item modifier="longdivider"tappable onclick="hidePopover()">数字表記 345</ons-list-item>
+            <ons-list-item modifier="longdivider" tappable onclick="hidePopover()">記号表記 〇△□</ons-list-item>
+        </ons-list>
+</ons-popover>

@@ -1,0 +1,56 @@
+/* This is a CSS file */
+
+/* ラウンド数, 平均スコア/パット数, ベストスコア */
+ul.stats{
+    display: flex;
+    flex-wrap:nowrap;
+    height: 44px;
+}
+ul.stats li{
+    list-style-type: none;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    outline: 0.5px solid #bbb;
+    padding: 2px;
+}
+.stats__title{
+    font-size: x-small;
+}
+.stats__value{
+    padding: 2px;
+    font-weight: bold;
+}
+
+/* スコア登録, ラウンド履歴, スコア統計*/
+.score{
+    display: flex;
+}
+.score .left{
+    width:66.66%;
+}
+.score .left .score__register{
+    text-align: center;
+    outline: 0.5px solid #bbb;
+    height: 66.66vw;
+}
+
+.score .right{
+    width:33.33%;
+    display: flex;
+    flex-direction: column;
+}
+
+.score .right .score__history{
+    outline: 0.5px solid #bbb;
+    height: 33.336vw;
+}
+.score .right .score__stats{
+    outline: 0.5px solid #bbb;
+    height: 33.33vw;
+}
+
+.photo-scorecard{
+    outline: 1px solid #bbb;
+    height: calc(66.66vw);
+}

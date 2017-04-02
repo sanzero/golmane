@@ -1,0 +1,88 @@
+<style>
+
+.round-date__input {
+    width: 100vw;
+    height: 100%;
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+}
+</style>
+<ons-page id="s">
+    <ons-toolbar>
+        <div class="left">
+            <ons-back-button></ons-back-button>
+        </div>
+        <div class="center">ラウンド情報</div>
+    </ons-toolbar>
+
+    <ons-list class="navigation">
+        <ons-list-item class="navigation__cource-search">コース検索</ons-list-item>
+        <ons-list-item class="navigation__round-info">ラウンド情報</ons-list-item>
+        <ons-list-item class="navigation__plyer">プレイヤー</ons-list-item>
+    </ons-list>
+        <ons-list>
+            <ons-list-header>プレー日</ons-list-header>
+                <ons-list-item modifier="longdivider tappable">
+                    <span class="round-date__label"></span><input type="date" class="round-date__input" onload="myDate.render(this, '.round-date__label')" onchange="myDate.render(this, '.round-date__label')" />
+                </ons-list-item>
+            <ons-list-header>コース</ons-list-header>
+                <ons-list-item modifier="longdivider">
+                    フロント9
+                    <ons-select id="front9" class="right" onchange="editSelects(event)">
+                        <option value="1">OUTコース</option>
+                        <option value="2">INコース</option>
+                    </ons-select>
+                </ons-list-item>
+                <ons-list-item modifier="longdivider" >
+                    バック9
+                    <select id="back9" class="right" onchange="editSelects(event)">
+                        <option value="1">OUTコース</option>
+                        <option value="2">INコース</option>
+                    </select>
+                </ons-list-item>
+                <ons-list-item modifier="longdivider">
+                    ティー
+                    <select id="tee" class="right" onchange="editSelects(event)">
+                        <option value="1">バック</option>
+                        <option value="2">レギュラー</option>
+                        <option value="2">フロント</option>
+                    </select>
+                </ons-list-item>
+                <ons-list-item modifier="longdivider">
+                    グリーン
+                    <select id="green" class="right" onchange="editSelects(event)">
+                        <option value="1">ベント</option>
+                        <option value="2">コーライ</option>
+                    </select>                    
+                </ons-list-item>
+
+            <ons-list-header>天候</ons-list-header>
+                <ons-list-item modifier="longdivider" >
+                    天気
+                    <select id="weather" class="right" onchange="editSelects(event)">
+                        <option value="1">晴れ☀</option>
+                        <option value="2">曇り☁</option>
+                        <option value="3">雨☂</option>
+                        <option value="4">雪❆</option>
+                    </select> 
+                </ons-list-item>
+                <ons-list-item modifier="longdivider" >
+                    風
+                    <select id="wind" class="right" onchange="editSelects(event)">
+                        <option value="1">無風</option>
+                        <option value="2">微風</option>
+                        <option value="3">強風</option>
+                    </select>
+                </ons-list-item>
+        </ons-list>
+
+    <ons-bottom-toolbar class="foot-nav">
+        <div class="center">
+            <ons-button modifier="large" onclick="nav.pushPage('score-round-player.html')">次へ</ons-toolbar-button>
+        </div>
+    </ons-bottom-toolbar>
+</ons-page>

@@ -1,0 +1,1031 @@
+<style >   
+.course-nav .navigation-bar__left{
+    width: 10%;
+}
+.course-nav .navigation-bar__right{
+    width: 10%;
+}
+.course-nav .navigation-bar__center{
+    width: 80%;   
+}
+
+.course-nav .center{
+    display: flex;
+    justify-content: space-around;
+}
+.hole__str,  .yard__str, .par__str{
+    font-size: small;
+}
+
+.score-input{
+    display: flex;
+    align-items:flex-start;
+}
+
+.players {
+    width: 35%;
+    list-style-type: none;
+    margin-top: 8px;
+}
+.players > li{
+    display: flex;
+    align-items:center;
+    padding: 7px;
+    margin-bottom: 7px;
+    position: relative;
+}
+.players > li.active{
+    background-color: #ddd;
+}
+.players > li.active::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 10px 5px 0;
+    border-color: transparent rgba(24, 103, 194, 0.811765) transparent transparent;
+    position: absolute;
+    right: -7px;
+    top: 20%;
+}
+.player {
+    width: 60px;
+    text-align: center;
+}
+
+.player__icon {
+    display: block;
+    margin: auto;
+    height: 25px;
+}
+.player__name {
+    display: block;
+    margin: auto;
+    font-size: x-small;
+}
+#score-input .score {
+    width: 25px;
+}
+.score__stroke{
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.result {
+    width: 65%;
+    border: 1px solid rgba(24, 103, 194, 0.811765);
+    margin: 7px;
+    border-radius: 7px;
+}
+.result .list__header{
+    padding: 0;
+    padding-left: 12px;
+}
+.result .list__item__center {
+    font-size: small;
+}
+.result .list__item__right{
+    padding: 0;
+    padding-right: 7px;
+}
+.result .button {
+    line-height: 25px;
+    margin-left: 7px;
+}
+
+.half {
+    font-size: small;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+
+.swiper-container {
+    width: 100vw;
+    height: calc(100% - 44px);
+}
+
+</style>
+<ons-page id="score-input">
+    <ons-toolbar>
+        <div class="left">
+            <ons-toolbar-button class="font-small" onclick="nav.pushPage('score-round-info.html', {animation:'fade'})">
+                ラウンド情報
+            </ons-toolbar-button>
+        </div>
+        <div class="center">スコア入力</div>
+        <div class="right">
+            <ons-toolbar-button onclick="nav.pushPage('score-round-info.html', {animation:'lift'})">
+                <ons-icon icon="ion-navicon"></ons-icon>
+            </ons-toolbar-button>
+        </div>
+    </ons-toolbar>
+    <ons-toolbar inline>
+        <div class="center">あいうえおカントリークラブ</div>
+    </ons-toolbar>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <ons-toolbar inline class="course-nav">
+                    <div class="left">
+                        <ons-toolbar-button onclick="prev()">
+                            <ons-icon icon="ion-chevron-left"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        <div class="hole"><span class="hole__str">hole</span><span class="hole__value">3</span></div>
+                        <div class="yard"><span class="yard__value">329</span><span class="yard__str">yard</span></div>
+                        <div class="par"><span class="par__str">par</span><span class="par__value">4</span></div>
+                    </div>
+                    <div class="right">
+                        <ons-toolbar-button onclick="next()">
+                            <ons-icon icon="ion-chevron-right"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                </ons-toolbar>
+                <div class="score-input">
+                    <ul class="players">
+                        <li class="active">
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるお</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">5</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるスケ</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">15</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるみ</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">25</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるお</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">5</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <ons-list class="result">
+                        <ons-list-header>ごるお</ons-list-header>
+                            <ons-list-item modifier="longdivider">
+                                スコア
+                                <div class="right">
+                                    <span class="stroke">5</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                パット
+                                <div class="right">
+                                    <span class="putt">2</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                OB
+                                <div class="right">
+                                    <span class="putt">-</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                ペナルティ
+                                <div class="right">
+                                    <span class="putt">-</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                ティーショット
+                                <div class="right">
+                                    <ons-button><ons-icon modifier="outline" icon="ion-android-share" style="transform:scale( -1, 1);"></ons-icon><div class="font-xx-small">左</div></ons-button>
+                                    <ons-button><ons-icon modifier="outline" icon="ion-arrow-up-a"></ons-icon><div class="font-xx-small">キープ</div></ons-button>
+                                    <ons-button><ons-icon modifier="outline" icon="ion-android-share"></ons-icon><div class="font-xx-small">右</div></ons-button>
+                                </div>
+                            </ons-list-item>
+                    </ons-list>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <ons-toolbar inline class="course-nav">
+                    <div class="left">
+                        <ons-toolbar-button onclick="prev()">
+                            <ons-icon icon="ion-chevron-left"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        <div class="hole"><span class="hole__str">hole</span><span class="hole__value">3</span></div>
+                        <div class="yard"><span class="yard__value">329</span><span class="yard__str">yard</span></div>
+                        <div class="par"><span class="par__str">par</span><span class="par__value">4</span></div>
+                    </div>
+                    <div class="right">
+                        <ons-toolbar-button onclick="next()">
+                            <ons-icon icon="ion-chevron-right"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                </ons-toolbar>
+                <div class="score-input">
+                    <ul class="players">
+                        <li class="active">
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるお</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">5</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるスケ</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">15</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるみ</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">25</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるお</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">5</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <ons-list class="result">
+                        <ons-list-header>ごるお</ons-list-header>
+                            <ons-list-item modifier="longdivider">
+                                スコア
+                                <div class="right">
+                                    <span class="stroke">5</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                パット
+                                <div class="right">
+                                    <span class="putt">2</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                OB
+                                <div class="right">
+                                    <span class="putt">-</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                ペナルティ
+                                <div class="right">
+                                    <span class="putt">-</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                ティーショット
+                                <div class="right">
+                                    <ons-button><ons-icon modifier="outline" icon="ion-android-share" style="transform:scale( -1, 1);"></ons-icon><div class="font-xx-small">左</div></ons-button>
+                                    <ons-button><ons-icon modifier="outline" icon="ion-arrow-up-a"></ons-icon><div class="font-xx-small">キープ</div></ons-button>
+                                    <ons-button><ons-icon modifier="outline" icon="ion-android-share"></ons-icon><div class="font-xx-small">右</div></ons-button>
+                                </div>
+                            </ons-list-item>
+                    </ons-list>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <ons-toolbar inline class="course-nav">
+                    <div class="left">
+                        <ons-toolbar-button onclick="prev()">
+                            <ons-icon icon="ion-chevron-left"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        <div class="hole"><span class="hole__str">hole</span><span class="hole__value">3</span></div>
+                        <div class="yard"><span class="yard__value">329</span><span class="yard__str">yard</span></div>
+                        <div class="par"><span class="par__str">par</span><span class="par__value">4</span></div>
+                    </div>
+                    <div class="right">
+                        <ons-toolbar-button onclick="next()">
+                            <ons-icon icon="ion-chevron-right"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                </ons-toolbar>
+                <div class="score-input">
+                    <ul class="players">
+                        <li class="active">
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるお</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">5</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるスケ</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">15</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるみ</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">25</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるお</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">5</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <ons-list class="result">
+                        <ons-list-header>ごるお</ons-list-header>
+                            <ons-list-item modifier="longdivider">
+                                スコア
+                                <div class="right">
+                                    <span class="stroke">5</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                パット
+                                <div class="right">
+                                    <span class="putt">2</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                OB
+                                <div class="right">
+                                    <span class="putt">-</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                ペナルティ
+                                <div class="right">
+                                    <span class="putt">-</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                ティーショット
+                                <div class="right">
+                                    <ons-button><ons-icon modifier="outline" icon="ion-android-share" style="transform:scale( -1, 1);"></ons-icon><div class="font-xx-small">左</div></ons-button>
+                                    <ons-button><ons-icon modifier="outline" icon="ion-arrow-up-a"></ons-icon><div class="font-xx-small">キープ</div></ons-button>
+                                    <ons-button><ons-icon modifier="outline" icon="ion-android-share"></ons-icon><div class="font-xx-small">右</div></ons-button>
+                                </div>
+                            </ons-list-item>
+                    </ons-list>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <ons-toolbar inline class="course-nav">
+                    <div class="left">
+                        <ons-toolbar-button onclick="prev()">
+                            <ons-icon icon="ion-chevron-left"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        <div class="hole"><span class="hole__str">hole</span><span class="hole__value">3</span></div>
+                        <div class="yard"><span class="yard__value">329</span><span class="yard__str">yard</span></div>
+                        <div class="par"><span class="par__str">par</span><span class="par__value">4</span></div>
+                    </div>
+                    <div class="right">
+                        <ons-toolbar-button onclick="next()">
+                            <ons-icon icon="ion-chevron-right"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                </ons-toolbar>
+                <div class="score-input">
+                    <ul class="players">
+                        <li class="active">
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるお</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">5</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるスケ</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">15</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるみ</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">25</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるお</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">5</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <ons-list class="result">
+                        <ons-list-header>ごるお</ons-list-header>
+                            <ons-list-item modifier="longdivider">
+                                スコア
+                                <div class="right">
+                                    <span class="stroke">5</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                パット
+                                <div class="right">
+                                    <span class="putt">2</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                OB
+                                <div class="right">
+                                    <span class="putt">-</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                ペナルティ
+                                <div class="right">
+                                    <span class="putt">-</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                ティーショット
+                                <div class="right">
+                                    <ons-button><ons-icon modifier="outline" icon="ion-android-share" style="transform:scale( -1, 1);"></ons-icon><div class="font-xx-small">左</div></ons-button>
+                                    <ons-button><ons-icon modifier="outline" icon="ion-arrow-up-a"></ons-icon><div class="font-xx-small">キープ</div></ons-button>
+                                    <ons-button><ons-icon modifier="outline" icon="ion-android-share"></ons-icon><div class="font-xx-small">右</div></ons-button>
+                                </div>
+                            </ons-list-item>
+                    </ons-list>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <ons-toolbar inline class="course-nav">
+                    <div class="left">
+                        <ons-toolbar-button onclick="prev()">
+                            <ons-icon icon="ion-chevron-left"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        <div class="hole"><span class="hole__str">hole</span><span class="hole__value">3</span></div>
+                        <div class="yard"><span class="yard__value">329</span><span class="yard__str">yard</span></div>
+                        <div class="par"><span class="par__str">par</span><span class="par__value">4</span></div>
+                    </div>
+                    <div class="right">
+                        <ons-toolbar-button onclick="next()">
+                            <ons-icon icon="ion-chevron-right"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                </ons-toolbar>
+                <div class="score-input">
+                    <ul class="players">
+                        <li class="active">
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるお</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">5</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるスケ</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">15</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるみ</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">25</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるお</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">5</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <ons-list class="result">
+                        <ons-list-header>ごるお</ons-list-header>
+                            <ons-list-item modifier="longdivider">
+                                スコア
+                                <div class="right">
+                                    <span class="stroke">5</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                パット
+                                <div class="right">
+                                    <span class="putt">2</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                OB
+                                <div class="right">
+                                    <span class="putt">-</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                ペナルティ
+                                <div class="right">
+                                    <span class="putt">-</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                ティーショット
+                                <div class="right">
+                                    <ons-button><ons-icon modifier="outline" icon="ion-android-share" style="transform:scale( -1, 1);"></ons-icon><div class="font-xx-small">左</div></ons-button>
+                                    <ons-button><ons-icon modifier="outline" icon="ion-arrow-up-a"></ons-icon><div class="font-xx-small">キープ</div></ons-button>
+                                    <ons-button><ons-icon modifier="outline" icon="ion-android-share"></ons-icon><div class="font-xx-small">右</div></ons-button>
+                                </div>
+                            </ons-list-item>
+                    </ons-list>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <ons-toolbar inline class="course-nav">
+                    <div class="left">
+                        <ons-toolbar-button onclick="prev()">
+                            <ons-icon icon="ion-chevron-left"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        <div class="hole"><span class="hole__str">hole</span><span class="hole__value">3</span></div>
+                        <div class="yard"><span class="yard__value">329</span><span class="yard__str">yard</span></div>
+                        <div class="par"><span class="par__str">par</span><span class="par__value">4</span></div>
+                    </div>
+                    <div class="right">
+                        <ons-toolbar-button onclick="next()">
+                            <ons-icon icon="ion-chevron-right"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                </ons-toolbar>
+                <div class="score-input">
+                    <ul class="players">
+                        <li class="active">
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるお</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">5</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるスケ</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">15</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるみ</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">25</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるお</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">5</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <ons-list class="result">
+                        <ons-list-header>ごるお</ons-list-header>
+                            <ons-list-item modifier="longdivider">
+                                スコア
+                                <div class="right">
+                                    <span class="stroke">5</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                パット
+                                <div class="right">
+                                    <span class="putt">2</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                OB
+                                <div class="right">
+                                    <span class="putt">-</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                ペナルティ
+                                <div class="right">
+                                    <span class="putt">-</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                ティーショット
+                                <div class="right">
+                                    <ons-button><ons-icon modifier="outline" icon="ion-android-share" style="transform:scale( -1, 1);"></ons-icon><div class="font-xx-small">左</div></ons-button>
+                                    <ons-button><ons-icon modifier="outline" icon="ion-arrow-up-a"></ons-icon><div class="font-xx-small">キープ</div></ons-button>
+                                    <ons-button><ons-icon modifier="outline" icon="ion-android-share"></ons-icon><div class="font-xx-small">右</div></ons-button>
+                                </div>
+                            </ons-list-item>
+                    </ons-list>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <ons-toolbar inline class="course-nav">
+                    <div class="left">
+                        <ons-toolbar-button onclick="prev()">
+                            <ons-icon icon="ion-chevron-left"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        <div class="hole"><span class="hole__str">hole</span><span class="hole__value">3</span></div>
+                        <div class="yard"><span class="yard__value">329</span><span class="yard__str">yard</span></div>
+                        <div class="par"><span class="par__str">par</span><span class="par__value">4</span></div>
+                    </div>
+                    <div class="right">
+                        <ons-toolbar-button onclick="next()">
+                            <ons-icon icon="ion-chevron-right"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                </ons-toolbar>
+                <div class="score-input">
+                    <ul class="players">
+                        <li class="active">
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるお</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">5</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるスケ</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">15</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるみ</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">25</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるお</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">5</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <ons-list class="result">
+                        <ons-list-header>ごるお</ons-list-header>
+                            <ons-list-item modifier="longdivider">
+                                スコア
+                                <div class="right">
+                                    <span class="stroke">5</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                パット
+                                <div class="right">
+                                    <span class="putt">2</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                OB
+                                <div class="right">
+                                    <span class="putt">-</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                ペナルティ
+                                <div class="right">
+                                    <span class="putt">-</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                ティーショット
+                                <div class="right">
+                                    <ons-button><ons-icon modifier="outline" icon="ion-android-share" style="transform:scale( -1, 1);"></ons-icon><div class="font-xx-small">左</div></ons-button>
+                                    <ons-button><ons-icon modifier="outline" icon="ion-arrow-up-a"></ons-icon><div class="font-xx-small">キープ</div></ons-button>
+                                    <ons-button><ons-icon modifier="outline" icon="ion-android-share"></ons-icon><div class="font-xx-small">右</div></ons-button>
+                                </div>
+                            </ons-list-item>
+                    </ons-list>
+                </div>
+            </div>
+<div class="swiper-slide">
+                <ons-toolbar inline class="course-nav">
+                    <div class="left">
+                        <ons-toolbar-button onclick="prev()">
+                            <ons-icon icon="ion-chevron-left"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        <div class="hole"><span class="hole__str">hole</span><span class="hole__value">3</span></div>
+                        <div class="yard"><span class="yard__value">329</span><span class="yard__str">yard</span></div>
+                        <div class="par"><span class="par__str">par</span><span class="par__value">4</span></div>
+                    </div>
+                    <div class="right">
+                        <ons-toolbar-button onclick="next()">
+                            <ons-icon icon="ion-chevron-right"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                </ons-toolbar>
+                <div class="score-input">
+                    <ul class="players">
+                        <li class="active">
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるお</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">5</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるスケ</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">15</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるみ</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">25</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="player">
+                                <span class="player__icon"><ons-icon icon="ion-android-person"></ons-icon></span>
+                                <span class="player__name">ごるお</span>
+                            </div>
+                            <div class="score">
+                                <span class="score__stroke">5</span>
+                                <span class="score__putt">2</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <ons-list class="result">
+                        <ons-list-header>ごるお</ons-list-header>
+                            <ons-list-item modifier="longdivider">
+                                スコア
+                                <div class="right">
+                                    <span class="stroke">5</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                パット
+                                <div class="right">
+                                    <span class="putt">2</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                OB
+                                <div class="right">
+                                    <span class="putt">-</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                ペナルティ
+                                <div class="right">
+                                    <span class="putt">-</span>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-plus"></ons-icon></ons-button>
+                                    <ons-button modifier="outline"><ons-icon icon="ion-minus"></ons-icon></ons-button>
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item modifier="longdivider">
+                                ティーショット
+                                <div class="right">
+                                    <ons-button><ons-icon modifier="outline" icon="ion-android-share" style="transform:scale( -1, 1);"></ons-icon><div class="font-xx-small">左</div></ons-button>
+                                    <ons-button><ons-icon modifier="outline" icon="ion-arrow-up-a"></ons-icon><div class="font-xx-small">キープ</div></ons-button>
+                                    <ons-button><ons-icon modifier="outline" icon="ion-android-share"></ons-icon><div class="font-xx-small">右</div></ons-button>
+                                </div>
+                            </ons-list-item>
+                    </ons-list>
+                </div>
+            </div>
+            <div class="swiper-slide last-page">
+                <ons-list modifier="inset">
+                    <ons-list-item modifier="longdivider">
+                        <div class="left">
+                            ゴルオ
+                        </div>
+                        <div class="center half">
+                            <div class="half-score">
+                                <span>フロント9</span>
+                                <span class="half-score__stroke">46</span>
+                                <span class="half-score__putt">22</span>
+                            </div>
+                            <div class="half-score">
+                                <span>バック9</span>
+                                <span class="half-score__stroke">46</span>
+                                <span class="half-score__putt">22</span>
+                            </div>
+                            <div class="half-score">
+                                <span>エキストラ9</span>
+                                <span class="half-score__stroke">46</span>
+                                <span class="half-score__putt">22</span>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <div class="">
+                                <span class="stroke">99</span>
+                                <span class="putt">44</span>
+                            </div>
+                        </div>
+                    </ons-list-item>
+                    <ons-list-item modifier="longdivider">
+                        <div class="left">
+                            ごルオ
+                        </div>
+                    </ons-list-item>
+                    <ons-list-item modifier="longdivider">
+                        <div class="left">
+                            ごルオ
+                        </div>
+                    </ons-list-item>
+                    <ons-list-item modifier="longdivider">
+                        <div class="left">
+                            ごルオ
+                        </div>
+                    </ons-list-item>
+                </ons-list>
+                <ons-tabbar position="bottom">
+                    <ons-button modifier="large" onclick="nav.resetToPage('history-round-result.html', {animation: 'fade'})">ラウンド終了</ons-button>
+                </ons-tabbar>
+            </div>
+        </div>
+    </div>
+
+</ons-page>
+

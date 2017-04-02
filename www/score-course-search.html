@@ -1,0 +1,56 @@
+<style>
+.list__header{
+    padding: 0;
+    padding-left: 10px;
+}
+
+.navigation{
+    display: flex;
+    align-items: center;
+}
+.navigation__cource-search,
+.navigation__round-info,
+.navigation__plyer {
+    width: 33.33vw;    
+}
+.navigation__round-info::after,
+.navigation__plyer::after{
+    font-family: 'Ionicons';
+    content: "\f125";
+    position: absolute;
+    top: 12px;
+    left: -3px;
+    color: #bbb;
+}
+</style>
+<ons-page id="course-search">
+    <ons-toolbar>
+        <div class="left">
+            <ons-back-button></ons-back-button>
+        </div>
+        <div class="center">スコア登録</div>
+        <div class="right">
+            <ons-toolbar-button onclick="">
+                フリー入力
+            </ons-toolbar-button>
+        </div>
+    </ons-toolbar>
+    <ons-list class="navigation">
+        <ons-list-item class="navigation__cource-search">コース検索</ons-list-item>
+        <ons-list-item class="navigation__round-info">ラウンド情報</ons-list-item>
+        <ons-list-item class="navigation__plyer">プレイヤー</ons-list-item>
+    </ons-list>
+    <ons-toolbar inline style="padding: 7px;">
+        <div class="center">
+            <input type="search" class="search-input" placeholder="コース名検索" />
+        </div>
+    </ons-toolbar>
+    <ons-list>
+        <ons-list-header>周辺のゴルフ場</ons-list-header>
+            <ons-list-item modifier="longdivider chevron" tappable onclick="nav.pushPage('score-round-info.html')">あいうゴルフコース</ons-list-item>
+            <ons-list-item modifier="longdivider chevron" tappable onclick="nav.pushPage('score-round-info.html')">ABCゴルフガーデン</ons-list-item>
+        <ons-list-header>ラウンド履歴</ons-list-header>
+            <ons-list-item modifier="longdivider chevron" tappable onclick="nav.pushPage('score-round-info.html')">あいうゴルフコース</ons-list-item>
+            <ons-list-item modifier="longdivider chevron" tappable onclick="nav.pushPage('score-round-info.html')">ABCゴルフガーデン</ons-list-item>
+    </ons-list>
+</ons-page>

@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="components/monaca-onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="components/monaca-onsenui/css/onsen-css-components.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/top.css">
+    <link rel="stylesheet" href="css/round-result.css">
+    <script src="components/monaca-onsenui/js/onsenui.js"></script>
+
+    <link rel="stylesheet" href="components/swiper/css/swiper.min.css">
+    <script src="components/swiper/js/swiper.min.js"></script>
+    <script src="components/Chart.bundle.min.js"></script>
+    <script src="js/statistics.js"></script>
+
+    <script type="text/javascript" src="https://cdn-creativesdk.adobe.io/v1/csdk.js"></script>
+	<script type="text/javascript" src="js/creative-sdk-config.js"></script>
+	<script type="text/javascript" src="js/creative-sdk.js"></script>
+
+    <script>
+        var MyDate = function(){};
+        MyDate.prototype.render = function(obj, selector){
+            var ymd = obj.value.replace(/(\d+)-(\d+)-(\d+)/, "$1年$2月$3日");
+            document.querySelector(selector).innerText = ymd;
+        }
+        var myDate = new MyDate();
+
+    document.addEventListener('init', function(event) {
+        var page = event.target;
+        if (page.id === 'score-input') {
+            var swiper = new Swiper('.swiper-container');
+
+        } else if (page.id === 'score-round-info') {
+            
+        } else if (page.id === 'statistics'){
+            statistics.init();
+            statistics.swipe();
+            
+        } else if (page.id === 'photo-score-card') {
+
+        } else if (page.id === 'index') {
+            var nav = document.querySelector('#nav');
+           // nav.resetToPage('login.html');
+//            nav.insertPage(1, 'score-input.html'); 
+// 
+//             nav.replacePage('statistics.html');
+//             nav.on('postush', function(){
+//                nav.insertPage(3, 'score-input.html'); 
+//                 console.log(nav);
+//             });
+        }
+    });
+    function getPhoto () {
+        //Specify the source to get the photos.
+        navigator.camera.getPicture(onSuccess, onFail, 
+        {
+            quality: 50,
+            destinationType: Camera.DestinationType.FILE_URI,
+            sourceType: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM
+        });
+    }
+    function onSuccess (imageURI) {
+        var largeImage = document.querySelector('#photoscorecard-image');
+        largeImage.style.backgroundImage = 'url("' + imageURI + '")';
+    }
+    function onFail (message) {
+        console.log('An error occured: ' + message);
+    }    
+    
+    function showPopover(target) {
+        document.querySelector('#popover').show(target, {animation: "fade-md"});
+    };
+    
+    function hidePopover(){
+        document.querySelector('#popover').hide();
+    };
+
+
+    </script>
+    <script type="text/javascript">
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+         function onDeviceReady () {
+
+        }
+
+    </script>
+<style>
+    .top{
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        z-index: 0;
+        overflow: hidden;
+    }
+    .top:before{
+        content: '';
+        background: inherit;
+        background-image: url('image/golf_bg1.jpg');
+        -webkit-filter: blur(5px) brightness(1.1);
+        filter: blur(5px) brightness(1.1);
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        z-index: -1;
+        opacity: 0.7;
+    }
+</style>
+    
+</head>
+        <body>
+            <ons-navigator id="nav" page="index.html" animation="slide" var="nav">
+
+                <ons-page id="index">
+                    <div class="top">
+                    <ons-toolbar>
+                        <div class="center">ゴルマネ</div>
+                        <div class="right">
+                            <ons-toolbar-button onclick="nav.pushPage('information.html', {animation: 'lift'})">
+                                <ons-icon icon="ion-ios-information"></ons-icon>
+                            </ons-toolbar-button>
+                        </div>
+                    </ons-toolbar>
+                    <div class="contents">
+                        <ul class="stats">
+                            <li>
+                                <p class="stats__title">ラウンド数</p>
+                                <p class="stats__value">12</p>
+                            </li>
+                            <li>
+                                <p class="stats__title">平均スコア/パット数</p>
+                                <p class="stats__value">92.1 / 36</p>
+                            </li>
+                            <li>
+                                <p class="stats__title">ベストスコア</p>
+                                <p class="stats__value">88</p>
+                            </li>
+                        </ul>
+                        <div class="score">
+                            <div class="left">
+                                <div class="score__register" onclick="nav.pushPage('score-course-search.html')">スコア登録</div>
+                            </div>
+                            <div class="right">
+                                <div class="score__history" onclick="nav.pushPage('history-round-list.html')">ラウンド履歴</div>
+                                <div class="score__stats" onclick="nav.pushPage('statistics.html')">スコア統計</div>
+                            </div>
+                        </div>
+                        <div class="photo-scorecard" onclick="nav.pushPage('photo-score-card.html')">フォトスコアカード</div>
+                    </div>
+                </div>
+            </ons-page>
+        </ons-navigator>
+    </body>
+</html>

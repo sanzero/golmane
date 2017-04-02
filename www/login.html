@@ -1,0 +1,72 @@
+<style>
+.mail-login{
+    padding: 5vw;
+    text-align: center;
+}
+.mail-login ons-input{
+    margin: 5px;
+    text-align: center;
+}
+.mail-login ons-button{
+    margin: 10px;
+    text-align: center;
+}
+.sns-login {
+    text-align: center;
+    margin: 10px;
+}
+.sns-login ons-button{
+    margin: 10px 0;
+}
+.sns-login ons-icon{
+    vertical-align: 0%;
+    padding-right: 0.5em;
+}
+
+.form {
+    text-align: center;
+    padding: 0 10vw;
+}
+
+.sns--instagram{
+    background: linear-gradient(-135deg,#1400c8,#b900b4,#f50000);
+}
+.sns--facebook{
+    background-color: #315096;
+}
+.sns--twitter{
+    background-color: #55acee;
+}
+.sns--google{
+    background-color: #dd4b39;
+}
+
+</style>
+<ons-page id="login">
+    <ons-toolbar>
+        <div class="left">
+            <ons-toolbar-button onclick="nav.popPage()">
+                <ons-icon icon="ion-close"></ons-icon>
+            </ons-toolbar-button>
+        </div>
+        <div class="center">ログイン</div>
+    </ons-toolbar>
+    <div>
+        <div class="mail-login">
+            メールアドレス
+            <div class="form">
+                <ons-input id="username" modifier="underbar" placeholder="Username" float></ons-input>
+                <ons-input id="password" modifier="underbar" type="password" placeholder="Password" float></ons-input>
+                <ons-button modifier="large">ログイン</ons-button>    
+            </div>
+        </div>
+        <div class="sns-login">
+            SNSログイン
+            <div class="form">    
+                <ons-button modifier="large" class="sns--instagram"><ons-icon icon="ion-social-instagram-outline"></ons-icon>Instagram</ons-button>
+                <ons-button modifier="large" class="sns--facebook"><ons-icon icon="ion-social-facebook"></ons-icon>Facebook</ons-button>
+                <ons-button modifier="large" class="sns--twitter"><ons-icon icon="ion-social-twitter"></ons-icon>Twitter</ons-button>
+                <ons-button modifier="large" class="sns--google"><ons-icon icon="ion-social-googleplus"></ons-icon>Google</ons-button>
+            </div>
+    </div>
+</ons-page>
